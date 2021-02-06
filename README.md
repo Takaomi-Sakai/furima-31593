@@ -29,11 +29,9 @@
 | building         | string     |                   |
 | phone            | string     | null:false        |
 | purchase_record  | references | foreign_key: true |
-| user             | references | foreign_key: true |
 
 ### Association
 
-belongs_to :users
 belongs_to : purchase_records
 
 ## items テーブル
@@ -51,7 +49,7 @@ belongs_to : purchase_records
 | user               | references | foreign_key: true |
 
 ### Association
-belongs_to :users
+belongs_to :user
 
 ## purchase_records テーブル
 
@@ -62,7 +60,7 @@ belongs_to :users
 
 ### Association
 
-belongs_to :users
+belongs_to :user
 has_one :purchses
 
 
