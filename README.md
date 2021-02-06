@@ -28,11 +28,11 @@
 | address          | string     | null:false        |
 | building         | string     |                   |
 | phone            | string     | null:false        |
-| purchase_records | references | foreign_key: true |
+| purchase_record  | references | foreign_key: true |
 
 ### Association
 
-belongs_to : purchase_records
+belongs_to : purchase_record
 
 ## items テーブル
 
@@ -47,11 +47,10 @@ belongs_to : purchase_records
 | day_id             | integer    | null:false        |
 | price              | integer    | null:false        |
 | user               | references | foreign_key: true |
-| purchase_record    | references | foreign_key: true |
 
 
 ### Association
-has_one :user
+belongs_to :users
 has_one :purchase_record
 
 ## purchase_records テーブル
@@ -60,7 +59,6 @@ has_one :purchase_record
 | --------- | ---------- | ----------------- |
 | user      | references | foreign_key: true |
 | item      | references | foreign_key: true |
-| purchase  | references | foreign_key: true |
 
 ### Association
 
