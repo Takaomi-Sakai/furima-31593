@@ -2,54 +2,57 @@
 
 ## users テーブル
 
-| Column      | Type    | Option   |
-| ----------- | ------- | -------- |
-| nickname    | string  | NOT NULL |
-| email       | string  | NOT NULL |
-| password    | string  | NOT NULL |
-| name        | string  | NOT NULL |
-| birthday    | integer | NOT NULL |
+| Column                | Type    | Option     |
+| --------------------- | ------- | ---------- |
+| nickname              | string  | null:false |
+| email                 | string  | null:false |
+| encrypted_password    | string  | null:false |
+| last_name             | string  | null:false |
+| first_name            | string  | null:false |
+| last_name_ruby        | string  | null:false |
+| first_name_ruby       | string  | null:false |
+| date                  | integer | null:false |
 
 ### Association
 
-- has_many :purchases
 - has_many :exhibitdates
 
 ## purchases テーブル
 
-| Column           | Type       | Option   |
-| ---------------- | ---------- | -------- |
-| cardinformation  | integer    | NOT NULL |
-| expirationdate   | integer    | NOT NULL |
-| securitycode     | integer    | NOT NULL |
-| postalcode       | integer    | NOT NULL |
-| prefectures      | string     | NOT NULL |
-| maincipality     | string     | NOT NULL |
-| address          | string     | NOT NULL |
-| building         | string     | NOT NULL |
-| phone            | integer    | NOT NULL |
-| image            |            |          |
-| user             | references |          |
-| exhibitdates     | references |          |
+| Column           | Type       | Option     |
+| ---------------- | ---------- | ---------- |
+| postalcode       | string     | null:false |
+| prefecture_id    | integer    | null:false |
+| maincipality     | string     | null:false |
+| address          | string     | null:false |
+| building         | string     |            |
+| phone            | string     | null:false |
 
 ## exhibitdates テーブル
 
-| Column             | Type       | Option   |
-| ------------------ | ---------- | -------- |
-| productname        | integer    | NOT NULL |
-| discription        | text       | NOT NULL |
-| category           | integer    | NOT NULL |
-| status             | integer    | NOT NULL |
-| deliveryfee        | string     | NOT NULL |
-| area               | string     | NOT NULL |
-| days               | integer    | NOT NULL |
-| price              | integer    | NOT NULL |
-| salescommission    | string     | NOT NULL |
-| salesprofit        | string     | NOT NULL |
+| Column             | Type       | Option     |
+| ------------------ | ---------- | ---------- |
+| productname        | string     | null:false |
+| discription        | text       | null:false |
+| category_id        | integer    | null:false |
+| status_id          | integer    | null:false |
+| delivery_fee_id    | integer    | null:false |
+| area_id            | integer    | null:false |
+| day_id             | integer    | null:false |
+| price              | integer    | null:false |
+
+
+## purchase_records テーブル
+
+| Column    | Type       | Option            |
+| --------- | ---------- | ----------------- |
+| user      | references | foreign_key: true |
+| purchase  | references | foreign_key: true |
 
 ### Association
 
-- has_many : purchases
+belongs_to :users
+has_many :purchses
 
 
 This README would normally document whatever steps are necessary to get the
