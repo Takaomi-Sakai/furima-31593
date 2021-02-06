@@ -2,20 +2,20 @@
 
 ## users テーブル
 
-| Column                | Type    | Option     |
-| --------------------- | ------- | ---------- |
-| nickname              | string  | null:false |
-| email                 | string  | null:false |
-| encrypted_password    | string  | null:false |
-| last_name             | string  | null:false |
-| first_name            | string  | null:false |
-| last_name_ruby        | string  | null:false |
-| first_name_ruby       | string  | null:false |
-| date                  | integer | null:false |
+| Column                | Type    | Option      |
+| --------------------- | ------- | ----------- |
+| nickname              | string  | null:false  |
+| email                 | string  | unique:true |
+| encrypted_password    | string  | null:false  |
+| last_name             | string  | null:false  |
+| first_name            | string  | null:false  |
+| last_name_ruby        | string  | null:false  |
+| first_name_ruby       | string  | null:false  |
+| birthday              | date    | null:false  |
 
 ### Association
 
-- has_many :exhibitdates
+- has_many :items
 
 ## purchases テーブル
 
@@ -28,19 +28,19 @@
 | building         | string     |            |
 | phone            | string     | null:false |
 
-## exhibitdates テーブル
+## items テーブル
 
-| Column             | Type       | Option     |
-| ------------------ | ---------- | ---------- |
-| productname        | string     | null:false |
-| discription        | text       | null:false |
-| category_id        | integer    | null:false |
-| status_id          | integer    | null:false |
-| delivery_fee_id    | integer    | null:false |
-| area_id            | integer    | null:false |
-| day_id             | integer    | null:false |
-| price              | integer    | null:false |
-
+| Column             | Type       | Option            |
+| ------------------ | ---------- | ----------------- |
+| product_name       | string     | null:false        |
+| discription        | text       | null:false        |
+| category_id        | integer    | null:false        |
+| status_id          | integer    | null:false        |
+| delivery_fee_id    | integer    | null:false        |
+| area_id            | integer    | null:false        |
+| day_id             | integer    | null:false        |
+| price              | integer    | null:false        |
+| user               | references | foreign_key: true |
 
 ## purchase_records テーブル
 
