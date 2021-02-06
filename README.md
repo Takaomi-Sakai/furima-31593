@@ -50,7 +50,7 @@ belongs_to : purchase_record
 
 
 ### Association
-belongs_to :users
+belongs_to :user
 has_one :purchase_record
 
 ## purchase_records テーブル
