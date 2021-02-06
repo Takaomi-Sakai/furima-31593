@@ -28,11 +28,11 @@
 | address          | string     | null:false        |
 | building         | string     |                   |
 | phone            | string     | null:false        |
-| items            | references | foreign_key: true |
+| purchase_records | references | foreign_key: true |
 
 ### Association
 
-belongs_to : items
+belongs_to : purchase_records
 
 ## items テーブル
 
@@ -47,21 +47,26 @@ belongs_to : items
 | day_id             | integer    | null:false        |
 | price              | integer    | null:false        |
 | user               | references | foreign_key: true |
+| purchase_record    | references | foreign_key: true |
+
 
 ### Association
 has_one :user
+has_one :purchase_record
 
 ## purchase_records テーブル
 
 | Column    | Type       | Option            |
 | --------- | ---------- | ----------------- |
 | user      | references | foreign_key: true |
-| items     | references | foreign_key: true |
+| item      | references | foreign_key: true |
+| purchase  | references | foreign_key: true |
 
 ### Association
 
 belongs_to :user
-has_one :items
+belongs_to :item
+has_one :purchase
 
 
 This README would normally document whatever steps are necessary to get the
