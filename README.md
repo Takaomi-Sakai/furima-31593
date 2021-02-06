@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column                | Type    | Option      |
-| --------------------- | ------- | ----------- |
-| nickname              | string  | null:false  |
-| email                 | string  | unique:true |
-| encrypted_password    | string  | null:false  |
-| last_name             | string  | null:false  |
-| first_name            | string  | null:false  |
-| last_name_ruby        | string  | null:false  |
-| first_name_ruby       | string  | null:false  |
-| birthday              | date    | null:false  |
+| Column                | Type    | Option                  |
+| --------------------- | ------- | ----------------------- |
+| nickname              | string  | null:false              |
+| email                 | string  | null:false, unique:true |
+| encrypted_password    | string  | null:false              |
+| last_name             | string  | null:false              |
+| first_name            | string  | null:false              |
+| last_name_ruby        | string  | null:false              |
+| first_name_ruby       | string  | null:false              |
+| birthday              | date    | null:false              |
 
 ### Association
 
@@ -28,11 +28,11 @@
 | address          | string     | null:false        |
 | building         | string     |                   |
 | phone            | string     | null:false        |
-| purchase_record  | references | foreign_key: true |
+| items            | references | foreign_key: true |
 
 ### Association
 
-belongs_to : purchase_records
+belongs_to : items
 
 ## items テーブル
 
@@ -43,25 +43,25 @@ belongs_to : purchase_records
 | category_id        | integer    | null:false        |
 | status_id          | integer    | null:false        |
 | delivery_fee_id    | integer    | null:false        |
-| area_id            | integer    | null:false        |
+| prefecture_id      | integer    | null:false        |
 | day_id             | integer    | null:false        |
 | price              | integer    | null:false        |
 | user               | references | foreign_key: true |
 
 ### Association
-belongs_to :user
+has_one :user
 
 ## purchase_records テーブル
 
 | Column    | Type       | Option            |
 | --------- | ---------- | ----------------- |
 | user      | references | foreign_key: true |
-| purchase  | references | foreign_key: true |
+| items     | references | foreign_key: true |
 
 ### Association
 
 belongs_to :user
-has_one :purchses
+has_one :items
 
 
 This README would normally document whatever steps are necessary to get the
