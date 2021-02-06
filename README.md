@@ -16,17 +16,25 @@
 ### Association
 
 - has_many :items
+- has_many :purchase_records
 
 ## purchases テーブル
 
-| Column           | Type       | Option     |
-| ---------------- | ---------- | ---------- |
-| postalcode       | string     | null:false |
-| prefecture_id    | integer    | null:false |
-| maincipality     | string     | null:false |
-| address          | string     | null:false |
-| building         | string     |            |
-| phone            | string     | null:false |
+| Column           | Type       | Option            |
+| ---------------- | ---------- | ----------------- |
+| postalcode       | string     | null:false        |
+| prefecture_id    | integer    | null:false        |
+| maincipality     | string     | null:false        |
+| address          | string     | null:false        |
+| building         | string     |                   |
+| phone            | string     | null:false        |
+| purchase_record  | references | foreign_key: true |
+| user             | references | foreign_key: true |
+
+### Association
+
+belongs_to :users
+belongs_to : purchase_records
 
 ## items テーブル
 
@@ -42,6 +50,9 @@
 | price              | integer    | null:false        |
 | user               | references | foreign_key: true |
 
+### Association
+belongs_to :users
+
 ## purchase_records テーブル
 
 | Column    | Type       | Option            |
@@ -52,7 +63,7 @@
 ### Association
 
 belongs_to :users
-has_many :purchses
+has_one :purchses
 
 
 This README would normally document whatever steps are necessary to get the
