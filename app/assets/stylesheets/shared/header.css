@@ -2,6 +2,8 @@
   box-sizing: border-box;
 }
 
+
+
 .top-page-header {
   width: 100vw;
   padding: 2vh 15vw;
@@ -57,7 +59,6 @@
 .lists-left {
   display: flex;
   min-width: 200px;
-
 }
 
 .category-list {
