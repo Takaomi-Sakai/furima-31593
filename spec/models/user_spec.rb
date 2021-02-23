@@ -50,6 +50,30 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include "Nickname can't be blank"
     end
 
+    it 'last_nameが空では登録できない' do
+      @user.last_name = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Last name can't be blank"
+    end
+
+    it 'first_nameが空では登録できない' do
+      @user.first_name = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include "First name can't be blank"
+    end
+
+    it 'last_name_rubyが空では登録できない' do
+      @user.last_name_ruby = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Last name ruby can't be blank"
+    end
+
+    it 'first_name_rubyが空では登録できない' do
+      @user.first_name_ruby = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include "First name ruby can't be blank"
+    end
+
     it 'last_nameは漢字・平仮名・カタカナ以外では登録できないこと' do
       @user.last_name = 'taka'
       @user.valid?
@@ -70,6 +94,18 @@ RSpec.describe User, type: :model do
 
     it 'first_name_rubyは全角カタカナ以外では登録できないこと' do
       @user.first_name_ruby = 'taka'
+      @user.valid?
+      expect(@user.errors.full_messages).to include "First name ruby 全角カナを使用してください"
+    end
+
+    it 'last_name_rubyは全角カタカナ以外の全角文字では登録できないこと' do
+      @user.last_name_ruby = 'さかい'
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Last name ruby 全角カナを使用してください"
+    end
+
+    it 'first_name_rubyは全角カタカナ以外では登録できないこと' do
+      @user.first_name_ruby = 'たかおみ'
       @user.valid?
       expect(@user.errors.full_messages).to include "First name ruby 全角カナを使用してください"
     end
@@ -117,14 +153,14 @@ RSpec.describe User, type: :model do
       @user.password = 'aaaaaa'
       @user.password_confirmation = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
 
     it 'passwordとpassword_confirmationが一致しなければ登録できないこと' do
       @user.password = 'aaaaaa'
       @user.password_confirmation = 'bbbbbb'
       @user.valid?
-      expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
 
     it '重複したemailが存在する場合登録できない' do
@@ -134,6 +170,13 @@ RSpec.describe User, type: :model do
       another_user.valid?
       expect(another_user.errors.full_messages).to include('Email has already been taken')
     end
+
+    it 'birthdayが空では登録できない' do
+      @user.birthday = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Birthday can't be blank"
+    end
+
   end
  end
 end
