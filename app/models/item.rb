@@ -10,8 +10,7 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :day
 
-
-  VALID_PRICEL_HALF =                 /\A[0-9]+\z/
+  VALID_PRICEL_HALF = /\A[0-9]+\z/
 
   validates :image, presence: true
   validates :product_name, presence: true
@@ -23,8 +22,6 @@ class Item < ApplicationRecord
   validates :day, presence: true
   validates :price, presence: true
 
-  validates  :price,  presence: true, format: {with: VALID_PRICEL_HALF}, numericality: { only_integer: true,
-    greater_than: 300, less_than: 10000000
-    }
-
+  validates :price, presence: true, format: { with: VALID_PRICEL_HALF }, numericality: { only_integer: true,
+                                                                                         greater_than: 300, less_than: 10_000_000 }
 end
