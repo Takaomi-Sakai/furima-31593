@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   # bofore_action :move_to_index, except: [:index, :show]
 
   def index
-    @items = Item.all
+    # @items = Item.all
   end
 
   def new
