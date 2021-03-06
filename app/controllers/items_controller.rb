@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:edit, :show, :update]
   before_action :contributor_confirmation, only: [:edit, :update]
-  # bofore_action :move_to_index, except: [:index, :show]
 
   def index
     @items = Item.all.order(id: 'DESC')
