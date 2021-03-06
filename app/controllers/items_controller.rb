@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   # bofore_action :move_to_index, except: [:index, :show]
 
   def index
-    @items = Item.all.order(id: "DESC")
+    @items = Item.all.order(id: 'DESC')
   end
 
   def new
@@ -18,6 +18,10 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @item = Item.find(params[:id])
   end
 
   private
