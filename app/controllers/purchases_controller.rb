@@ -1,4 +1,7 @@
 class PurchasesController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :contributor_confirmation, only: [:index]
+
   def index
     @userorder = UserOrder.new
     @item = Item.find(params[:item_id])
@@ -33,5 +36,10 @@ class PurchasesController < ApplicationController
       card: userorder_params[:token], # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
+  end
+
+  def contributor_confirmation
+    @item = Item.find(params[:item_id])
+    redirect_to root_path if current_user == @item.user
   end
 end
