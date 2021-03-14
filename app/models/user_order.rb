@@ -1,6 +1,6 @@
 class UserOrder
   include ActiveModel::Model
-  attr_accessor :postalcode, :prefecture_id, :maincipality, :address, :building, :phone, :purchase_record, :user_id, :item_id,
+  attr_accessor :postalcode, :prefecture_id, :maincipality, :address, :building, :phone, :user_id, :item_id,
                 :token
 
   # model/purchaseのバリデーション
