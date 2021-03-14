@@ -20,6 +20,12 @@ RSpec.describe UserOrder, type: :model do
         @user_order.phone = '09012345678'
         expect(@user_order).to be_valid
       end
+
+      it '建物名がなくても商品購入ができる' do
+        @user_order.building = ''
+        expect(@user_order).to be_valid
+      end
+
     end
   end
 
@@ -71,5 +77,24 @@ RSpec.describe UserOrder, type: :model do
       @user_order.valid?
       expect(@user_order.errors.full_messages).to include("Token can't be blank")
     end
+
+    it 'prefecture_idが1では商品購入できない' do
+      @user_order.prefecture_id = 1
+      @user_order.valid?
+      expect(@user_order.errors.full_messages).to include ("Prefecture must be greater than 1")
+    end
+
+    it 'user_idが空では商品購入できないこと' do
+      @user_order.user_id = ''
+      @user_order.valid?
+      expect(@user_order.errors.full_messages).to include("User can't be blank")
+    end
+    
+    it 'item_idが空では商品購入できないこと' do
+      @user_order.item_id = ''
+      @user_order.valid?
+      expect(@user_order.errors.full_messages).to include("Item can't be blank")
+    end
+
   end
 end

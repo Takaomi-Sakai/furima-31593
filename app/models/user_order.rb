@@ -10,13 +10,14 @@ class UserOrder
     validates :maincipality
     validates :address
     validates :phone
+    validates :token
   end
-
-  validates :token, presence: true
 
   validates_format_of :postalcode, with: /\A\d{3}-\d{4}\z/, message: 'Postal code Input correctly'
   validates_format_of :phone, with: /\A\d{10,11}\z/
   validates_format_of :phone, with: /\A[0-9]+\z/, message: 'Phone number Input only number'
+
+  validates :prefecture_id, numericality: { greater_than: 1 }
 
   # model/purchase_recordのバリデーション
   with_options presence: true do
